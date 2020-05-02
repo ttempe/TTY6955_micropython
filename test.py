@@ -3,7 +3,7 @@ import time
 import TTY6955
 
 
-i2c = I2C(scl="B6", sda = "B7", freq=10000) #Note: TTY6955 is limited to 100kHz i2c
+i2c = I2C(scl="B6", sda="B7", freq=100000) #Note: TTY6955 is limited to 100kHz i2c
 time.sleep_ms(100)
 
 def test_all_buttons():
@@ -26,7 +26,7 @@ def test_slider():
         button_touched = touch_sensor.button(0) #pin TP3
         time.sleep_ms(200)        
 
-def buttons():
+def test_buttons():
     touch_sensor = TTY6955.TTY6955(i2c)
     time.sleep_ms(2000) #Auto calibration can take a long time
                         #until done, read() will raise an exception
@@ -37,28 +37,4 @@ def buttons():
             touch_sensor.button(1), ",", #pin TP1
             touch_sensor.button(2)       #pin TP2
             )
-        time.sleep_ms(200)        
-            
-
-# def read():
-#     print(interrupt.value(), " ", end="")
-#     for c in i2c.readfrom(dev, 6):
-#         print("{:08b} ".format(c), end="")
-#     print()
-# 
-# def slider_loop():
-#     while True:
-#         try:
-#             v=i2c.readfrom(dev,6)
-#         except:
-#             pass
-#         print(v[3], ",", v[4], ",", v[5])
-#         time.sleep_ms(100)
-# 
-# def loop():    
-#     while True:
-#         try:
-#             read()
-#             time.sleep_ms(500)
-#         except OSError:
-#             print("Error")
+        time.
