@@ -48,7 +48,7 @@ class TTY6955:
                         auto_reset_mode             #ART
                         )
         self.buf[1] = ( ((self.nb_keys & 0x1F) << 3) +
-                        (key_acknowledge_times -1 & 0x7) #KAT
+                        ((key_acknowledge_times -1) & 0x7) #KAT
                         )
         self.buf[2] =   (slider2_pads << 4) + slider1_pads
         self.buf[3] = ( 0 +                         #Key off num
@@ -62,7 +62,7 @@ class TTY6955:
         Lets you set custom thresholds for each pad, for use
         with dynamic_threshold=False.
         sensitivity is a 12-bit integer.
-        The lower the value, the less sensitive the pad.
+        The lower the value, the more sensitive the pad.
         The datasheet recommends defaulting to 0x010, going no lower
         than 0x008. If sensitivity is still not sufficient with 0x008,
         it recommends increasing the CS capacitor (while keeping it under
